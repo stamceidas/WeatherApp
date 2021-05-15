@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XJ8-TJ-liP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9qx-kg-zp2">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
@@ -12,7 +12,7 @@
         <!--Location Detail View Controller-->
         <scene sceneID="aQL-Pb-0xo">
             <objects>
-                <viewController id="XJ8-TJ-liP" customClass="LocationDetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationDetailViewController" id="XJ8-TJ-liP" customClass="LocationDetailViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QTd-3O-twM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,6 +21,18 @@
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="rix-cT-03s"/>
+                                    <barButtonItem style="plain" id="xmo-XK-ink">
+                                        <pageControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="5Wj-BT-Cby">
+                                            <rect key="frame" x="0.0" y="13" width="374" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="pageIndicatorTintColor" systemColor="systemBlueColor"/>
+                                            <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="pageControlChanged:" destination="XJ8-TJ-liP" eventType="valueChanged" id="6XI-nu-4ES"/>
+                                            </connections>
+                                        </pageControl>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0cY-5L-Iah"/>
                                     <barButtonItem image="list.dash" catalog="system" id="hc6-j9-3mG">
                                         <connections>
                                             <segue destination="7eR-gw-t4J" kind="presentation" modalPresentationStyle="fullScreen" id="rb3-D6-tEK"/>
@@ -124,6 +136,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="ZMT-1u-g0P" id="jB0-kf-ASg"/>
                         <outlet property="locationLabel" destination="PsX-tS-Y7P" id="fjC-eK-1eP"/>
+                        <outlet property="pageControl" destination="5Wj-BT-Cby" id="vRr-3G-nnC"/>
                         <outlet property="temperatureLabel" destination="fNn-7g-WXW" id="SyZ-O7-iEC"/>
                         <outlet property="weatherDescriptionLabel" destination="Brj-yT-hvE" id="w9m-51-KLL"/>
                         <outlet property="weatherImageView" destination="j1f-kU-Nfv" id="MxE-MA-RYF"/>
@@ -131,7 +144,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CzV-It-QtR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-553.125" y="83.75"/>
+            <point key="canvasLocation" x="-553.62318840579712" y="83.705357142857139"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="lBI-PS-KQR">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="9qx-kg-zp2" customClass="PageViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5tI-mo-Kgj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-554" y="-637"/>
         </scene>
         <!--Locations-->
         <scene sceneID="tne-QT-ifu">
