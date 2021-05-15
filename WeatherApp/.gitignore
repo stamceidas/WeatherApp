@@ -102,4 +102,7 @@ iOSInjectionProject/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+### Custom files excluded ###
+WeatherApp/ApiKeys.swift
+
 # End of https://www.toptal.com/developers/gitignore/api/xcode,swift
