@@ -11,7 +11,7 @@ extension Date {
     func getWeekDay()-> String{
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "EEEE"
-            let weekDay = dateFormatter.string(from: Date())
+            let weekDay = dateFormatter.string(from: self)
             return weekDay
       }
 }
