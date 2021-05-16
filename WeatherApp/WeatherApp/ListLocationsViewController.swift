@@ -41,7 +41,12 @@ class ListLocationsViewController: UIViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
-
+        
+        // Specify a city filter.
+        let filter = GMSAutocompleteFilter()
+        filter.type = .city
+        autocompleteController.autocompleteFilter = filter
+        
         // Display the autocomplete view controller.
         present(autocompleteController, animated: true, completion: nil)
     }
