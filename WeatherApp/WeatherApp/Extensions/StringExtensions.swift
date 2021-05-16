@@ -15,4 +15,13 @@ extension String {
         dateFormatter.locale = Locale.current
         return dateFormatter.date(from: self)
     }
+    
+    func convertDateFormater(_ inputFormat: String = "H") -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = inputFormat
+        let date = dateFormatter.date(from: self)
+        dateFormatter.dateFormat = "ha"
+        return  dateFormatter.string(from: date!)
+        
+    }
 }
