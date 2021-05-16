@@ -13,6 +13,13 @@ struct DailyWeather {
     var dailyLow: String
 }
 
+struct HourlyWeather {
+    var hourlyTemp: String
+    var hourlyIcon: String
+    var hourlyDesc: String
+    var hourlyHour: String
+}
+
 class WeatherDetail: WeatherLocation {
     
     private struct Result: Codable {
@@ -43,6 +50,13 @@ class WeatherDetail: WeatherLocation {
         var date: String
         var mintempC: String
         var maxtempC: String
+        var hourly: [hourlyWeather]
+    }
+    
+    private struct hourlyWeather: Codable {
+        var tempC: String
+        var weatherIconUrl: [Icon]
+        var weatherDesc: [Desc]
     }
     
     var currentTime = "00:00"
@@ -50,6 +64,7 @@ class WeatherDetail: WeatherLocation {
     var temperature = ""
     var weatherIconUrl = ""
     var dailyWeatherData: [DailyWeather] = []
+    var hourlyWeatherData: [[HourlyWeather]] = []
     
     func getData(completed: @escaping() -> ()) {
         let urlString = "http://api.worldweatheronline.com/premium/v1/weather.ashx?key=\(ApiKeys.worldWeather)&q=\(name)&format=json&tp=1&mca=no&num_of_days=5"
@@ -84,7 +99,21 @@ class WeatherDetail: WeatherLocation {
                     }
                     let dailyWeather = DailyWeather(dailyDay: dailyDay, dailyHigh: dailyHigh, dailyLow: dailyLow)
                     self.dailyWeatherData.append(dailyWeather)
+                    
+                    
+                    var dayHourlyWeather : [HourlyWeather] = []
+                    result.data.weather[index].hourly.enumerated().forEach { (indexHour, day) in
+                        let hourlyTemp = "\(result.data.weather[index].hourly[indexHour].tempC)°"
+                        let hourlyIcon = result.data.weather[index].hourly[indexHour].weatherIconUrl[0].value
+                        let hourlyDesc = result.data.weather[index].hourly[indexHour].weatherDesc[0].value
+                        let hourlyHour = String(indexHour).convertDateFormater()
+                        
+                        let hourlyWeather = HourlyWeather(hourlyTemp: hourlyTemp, hourlyIcon: hourlyIcon, hourlyDesc: hourlyDesc, hourlyHour: hourlyHour)
+                        dayHourlyWeather.append(hourlyWeather)
+                    }
+                    self.hourlyWeatherData.append(dayHourlyWeather)
                 }
+                
             } catch {
                 print("Json Error \(error.localizedDescription)")
             }

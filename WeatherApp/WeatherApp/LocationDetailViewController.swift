@@ -14,17 +14,28 @@ class LocationDetailViewController: UIViewController {
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var currentWeatherDetail: WeatherDetail!
     var weatherLocationIndex = 0
+    var selectedDayIndexPath = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         clearUI()
         tableView.delegate = self
         tableView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
         updateUI()
     }
+    
+    
     
     func clearUI() {
         locationLabel.text = ""
@@ -52,8 +63,13 @@ class LocationDetailViewController: UIViewController {
                     self.weatherImageView.load(url: iconURL)
                 }
                 self.tableView.reloadData()
+                self.collectionView.reloadData()
+                
+                let indexPath = IndexPath(row: 0, section: 0)
+                self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             }
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -94,4 +110,27 @@ extension LocationDetailViewController: UITableViewDelegate, UITableViewDataSour
         cell.dailyWeather = currentWeatherDetail.dailyWeatherData[indexPath.row]
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard selectedDayIndexPath != indexPath.row else { return }
+        selectedDayIndexPath = indexPath.row
+        collectionView.reloadData()
+    }
+}
+
+extension LocationDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return currentWeatherDetail.hourlyWeatherData.first?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let hourlyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "hourlyCell", for: indexPath) as! HourlyCollectionViewCell
+        hourlyCell.hourlyWeather = currentWeatherDetail.hourlyWeatherData[selectedDayIndexPath][indexPath.row]
+        if let iconURL = URL(string: hourlyCell.hourlyWeather.hourlyIcon) {
+            hourlyCell.iconImageView.load(url: iconURL)
+        }
+        return hourlyCell
+    }
+    
+    
 }
