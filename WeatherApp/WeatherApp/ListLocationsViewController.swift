@@ -14,7 +14,11 @@ class ListLocationsViewController: UIViewController {
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
-    var weatherLocations: [WeatherLocation] = []
+    var weatherLocations: [WeatherLocation] = [] {
+        didSet {
+            saveLocations()
+        }
+    }
     var selectedLocationIndex = 0
     
     override func viewDidLoad() {
@@ -35,7 +39,6 @@ class ListLocationsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         selectedLocationIndex = tableView.indexPathForSelectedRow!.row
-        saveLocations()
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
