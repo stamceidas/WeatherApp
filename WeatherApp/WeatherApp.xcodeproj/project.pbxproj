@@ -19,6 +19,7 @@
 		6D45DAC22650E8AC0000B019 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45DAC12650E8AC0000B019 /* UIImageViewExtensions.swift */; };
 		6D45DAC52650F4170000B019 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45DAC42650F4170000B019 /* DateExtensions.swift */; };
 		6D45DAC82650FE680000B019 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45DAC72650FE680000B019 /* StringExtensions.swift */; };
+		6D45DACE265109110000B019 /* DailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45DACD265109110000B019 /* DailyTableViewCell.swift */; };
 		6DACAC13264FE8F000AD3F6E /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DACAC12264FE8F000AD3F6E /* ApiKeys.swift */; };
 		6DACAC1A2650139C00AD3F6E /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DACAC192650139C00AD3F6E /* LocationDetailViewController.swift */; };
 		6DACAC20265056B200AD3F6E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DACAC1F265056B200AD3F6E /* PageViewController.swift */; };
@@ -40,6 +41,7 @@
 		6D45DAC12650E8AC0000B019 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		6D45DAC42650F4170000B019 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		6D45DAC72650FE680000B019 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		6D45DACD265109110000B019 /* DailyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTableViewCell.swift; sourceTree = "<group>"; };
 		6DACAC12264FE8F000AD3F6E /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		6DACAC192650139C00AD3F6E /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		6DACAC1F265056B200AD3F6E /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			children = (
 				6D45DAC02650E84C0000B019 /* Extensions */,
 				6D330F5F264FBEF600C9EA26 /* AppDelegate.swift */,
+				6D45DACD265109110000B019 /* DailyTableViewCell.swift */,
 				6D330F61264FBEF600C9EA26 /* SceneDelegate.swift */,
 				6D330F74264FC00C00C9EA26 /* WeatherLocation.swift */,
 				6DACAC2226507C4200AD3F6E /* WeatherDetail.swift */,
@@ -250,6 +253,7 @@
 				6D45DAC82650FE680000B019 /* StringExtensions.swift in Sources */,
 				6D330F60264FBEF600C9EA26 /* AppDelegate.swift in Sources */,
 				6D330F62264FBEF600C9EA26 /* SceneDelegate.swift in Sources */,
+				6D45DACE265109110000B019 /* DailyTableViewCell.swift in Sources */,
 				6DACAC1A2650139C00AD3F6E /* LocationDetailViewController.swift in Sources */,
 				6DACAC13264FE8F000AD3F6E /* ApiKeys.swift in Sources */,
 			);

@@ -76,8 +76,8 @@ class WeatherDetail: WeatherLocation {
                 self.weatherIconUrl = result.data.current_condition[0].weatherIconUrl[0].value
                 
                 result.data.weather.enumerated().forEach { (index,day) in
-                    let dailyHigh = result.data.weather[index].maxtempC
-                    let dailyLow = result.data.weather[index].mintempC
+                    let dailyHigh = "H: \(result.data.weather[index].maxtempC)°"
+                    let dailyLow = "L: \(result.data.weather[index].mintempC)°"
                     var dailyDay = ""
                     if let date = result.data.weather[index].date.getDate() {
                         dailyDay = date.getWeekDay()

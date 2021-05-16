@@ -13,17 +13,25 @@ class LocationDetailViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var tableView: UITableView!
     
     var currentWeatherDetail: WeatherDetail!
     var weatherLocationIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        clearUI()
+        tableView.delegate = self
+        tableView.dataSource = self
         updateUI()
     }
     
-
+    func clearUI() {
+        locationLabel.text = ""
+        weatherDescriptionLabel.text = ""
+        temperatureLabel.text = ""
+        weatherImageView.image = UIImage()
+    }
     
     func updateUI() {
         let pageVC = UIApplication.shared.windows.first!.rootViewController as! PageViewController
@@ -43,6 +51,7 @@ class LocationDetailViewController: UIViewController {
                 if let iconURL = URL(string: self.currentWeatherDetail.weatherIconUrl) {
                     self.weatherImageView.load(url: iconURL)
                 }
+                self.tableView.reloadData()
             }
         }
     }
@@ -72,5 +81,17 @@ class LocationDetailViewController: UIViewController {
         
         pageVC.setViewControllers([pageVC.createLocationDetailVC(forPage: sender.currentPage)], direction: direction, animated: true, completion: nil)
         
+    }
+}
+
+extension LocationDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return currentWeatherDetail.dailyWeatherData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dailyCell", for: indexPath) as! DailyTableViewCell
+        cell.dailyWeather = currentWeatherDetail.dailyWeatherData[indexPath.row]
+        return cell
     }
 }
