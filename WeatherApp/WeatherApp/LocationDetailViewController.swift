@@ -9,13 +9,12 @@ import UIKit
 
 class LocationDetailViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    var currentWeatherLocation: WeatherLocation!
+    var currentWeatherDetail: WeatherDetail!
     var weatherLocationIndex = 0
     
     override func viewDidLoad() {
@@ -28,15 +27,24 @@ class LocationDetailViewController: UIViewController {
     
     func updateUI() {
         let pageVC = UIApplication.shared.windows.first!.rootViewController as! PageViewController
-        currentWeatherLocation = pageVC.weatherLocations[weatherLocationIndex]
-        locationLabel.text = currentWeatherLocation.address
-        dateLabel.text = ""
-        weatherDescriptionLabel.text = ""
+        let weatherLocation = pageVC.weatherLocations[weatherLocationIndex]
+        currentWeatherDetail = WeatherDetail(name: weatherLocation.name, address: weatherLocation.address, latitude: weatherLocation.longtitude, longtitude: weatherLocation.longtitude)
+        locationLabel.text = currentWeatherDetail.name
+        weatherDescriptionLabel.text = currentWeatherDetail.address
         temperatureLabel.text = "--°"
         
         pageControl.numberOfPages = pageVC.weatherLocations.count
         pageControl.currentPage = weatherLocationIndex
-        currentWeatherLocation.getData()
+        currentWeatherDetail.getData {
+            DispatchQueue.main.async {
+                self.weatherDescriptionLabel.text = self.currentWeatherDetail.description
+                self.locationLabel.text = self.currentWeatherDetail.name
+                self.temperatureLabel.text = self.currentWeatherDetail.temperature
+                if let iconURL = URL(string: self.currentWeatherDetail.weatherIconUrl) {
+                    self.weatherImageView.load(url: iconURL)
+                }
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -27,7 +27,7 @@ class PageViewController: UIPageViewController {
         else {
             print("Error! Could not load locations!")
             //TODO: Get user Location
-            weatherLocations.append(WeatherLocation(name: "Current Location", address: "Panagouli 5, Athens", latitude: 0, longtitude: 0))
+            weatherLocations.append(WeatherLocation(name: "Athens", address: "Panagouli 5, Athens", latitude: 0, longtitude: 0))
             return
         }
         
@@ -39,7 +39,7 @@ class PageViewController: UIPageViewController {
         }
         
         if weatherLocations.isEmpty {
-            weatherLocations.append(WeatherLocation(name: "Current Location", address: "Panagouli 5, Athens", latitude: 0, longtitude: 0))
+            weatherLocations.append(WeatherLocation(name: "Athens", address: "Panagouli 5, Athens", latitude: 0, longtitude: 0))
         }
     }
     
