@@ -18,7 +18,10 @@ class DailyTableViewCell: UITableViewCell {
             weekDayLabel.text = dailyWeather.dailyDay
             highTempLabel.text = dailyWeather.dailyHigh
             lowTempLabel.text = dailyWeather.dailyLow
+            
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.systemBlue
+            selectedBackgroundView = backgroundView
         }
     }
-    
 }
