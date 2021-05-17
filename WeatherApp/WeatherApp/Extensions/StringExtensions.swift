@@ -16,11 +16,11 @@ extension String {
         return dateFormatter.date(from: self)
     }
     
-    func convertDateFormater(_ inputFormat: String = "H") -> String {
+    func convertDateFormater(_ inputFormat: String = "H", outputFormat: String = "ha") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = inputFormat
         let date = dateFormatter.date(from: self)
-        dateFormatter.dateFormat = "ha"
+        dateFormatter.dateFormat = outputFormat
         return  dateFormatter.string(from: date!)
         
     }
